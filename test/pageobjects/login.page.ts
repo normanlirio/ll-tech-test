@@ -1,0 +1,26 @@
+import Base from './base.page'
+
+//TODO: add Private group step?
+class Login extends Base {
+
+    get email() { return $('input[inputmode="email"]') }
+    get password() { return $('input[type="password"]') }
+    get signIn() { return $('ion-button.rev-login-button') }
+
+    async login(email: string, password: string) {
+        await this.email.setValue(email)
+        await this.password.setValue(password)
+    }
+
+    async clickSignInButton() {
+        await this.signIn.click()
+    }
+
+    async open(url: string) {
+        await super.open(url)
+    }
+ 
+}
+
+
+export default new Login()
