@@ -19,6 +19,10 @@ class Login extends Base {
     async open(url: string) {
         await super.open(url)
     }
+
+    async getErrorMessage(errorMessage: string) {
+        return $(`ion-text.rev-text-alert*=${errorMessage}`)
+    }
  
 }
 

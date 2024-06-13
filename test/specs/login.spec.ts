@@ -1,5 +1,6 @@
 import Login from '../pageobjects/login.page'
 import Communicator from '../pageobjects/communicator.page'
+import Constants from '../utils/constant'
 
 describe('User Login', () => {
 
@@ -8,7 +9,7 @@ describe('User Login', () => {
     })
 
     it('should a user to login successfully with valid credentials', async () => {
-        await Login.login('jh-interview-user@revation.com','Summer2022!')
+        await Login.login('jh-interview-user2@revation.com','Summer2022!')
         await expect(Login.signIn).toBeEnabled()
 
         await Login.clickSignInButton()
@@ -24,8 +25,8 @@ describe('User Login', () => {
 
         await Login.clickSignInButton()
 
-        await expect($('ion-text.rev-text-alert*=Credentials')).toBeDisplayed()
-        await expect($('ion-text.rev-text-alert*=URL')).toBeDisplayed()
+        await expect(Login.getErrorMessage(Constants.ERROR_INVALID_CREDENTIALS)).toBeDisplayed()
+        await expect(Login.getErrorMessage(Constants.ERROR_CHECK_URL)).toBeDisplayed()
     
     })
 })
