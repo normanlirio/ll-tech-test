@@ -6,14 +6,22 @@ class Communicator extends Base {
     get startMessaging() { return $$('.popover-viewport ion-item') }
     get conversationsPane() { return $('.rev-sessions-container')}
     get activeSessions() { return $('.rev-active-sessions div:last-child') }
-    get internalLabel() { return this.activeSessions.$('session-participant-label') }
-    get timer() { return this.activeSessions.$('div.details')}
+    get internalLabel() { return this.activeSessions.$('div[qa-automation="session-participant-label"]') }
+    get timer() { return this.activeSessions.$('//div[@class="details"]//span[contains(text(), "Timer")]')}
+    
+    async getContactStatus(contactName: string) {
+        return await $(`span.rev-contact-name*=${contactName}`).nextElement()
+    }
 
     async clickContact(contactName: string) {
-        // await $('ion-card-title*=Loading').waitForDisplayed({ reverse : true})
-        await $(`span.rev-contact-name*=${contactName}`).waitForExist()
+        await super.waitUntil(
+                $(`span.rev-contact-name*=${contactName}`).nextElement(),
+                'Online 0m',
+                contactName + ' is currently Offline.')
+
         await $(`span.rev-contact-name*=${contactName}`).click()
     }
+
 
     async clickStartMessagingOption() {
         await this.startMessaging[0].click()

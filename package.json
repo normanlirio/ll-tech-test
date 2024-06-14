@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "wdio": "wdio run ./wdio.conf.ts --headed"
+    "test4": "wdio run ./wdio.conf.ts --headed --spec sendEmail.spec.ts",
+    "test3": "wdio run ./wdio.conf.ts --headed --spec test3.spec.ts"
   },
   "keywords": [],
   "author": "",
