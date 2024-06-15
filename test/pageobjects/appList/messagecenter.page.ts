@@ -34,16 +34,19 @@ class MessageCenter {
         await this.composeMessageButton.click()
     }
 
-    async fillEmail(emailDetails: EmailDetails) {
+    async fillToAndSubject(emailDetails: EmailDetails) {
         await this.recipient.setValue(emailDetails.recipient)
         await this.subject.setValue(emailDetails.subject)
+    }
+
+    async addEmailBody(message: string) {
 
         await browser.waitUntil(async () => {
             return this.emailBody.isDisplayed();
         }, {
             timeout: 5000,
             timeoutMsg: 'iframe was not displayed'
-        });
+        })
 
         // Switch to the iframe context
         const iframeElement = await this.emailBody;
@@ -52,17 +55,27 @@ class MessageCenter {
         // Verify that we have switched to the iframe by checking an element inside it
         const body = await browser.$('body') // Use a simple selector to locate the body element inside the iframe
         await browser.waitUntil(async () => {
-            return body.isDisplayed()
+            return body.isEnabled()
         }, {
             timeout: 5000,
             timeoutMsg: 'Body element inside iframe was not displayed'
-        });
+        })
 
+        await browser.pause(2000)
         // Set value inside the iframe's body
-        await body.setValue(emailDetails.emailBody)
+        await body.addValue(message)
 
         // Switch back to the main context
         await browser.switchToParentFrame()
+    }
+
+    //improve method name
+    async replyToEmail() {
+        await $('//app-email-reader//ion-footer//ion-buttons[@slot="end"]/ion-button[1]').waitForClickable()
+        await $('//app-email-reader//ion-footer//ion-buttons[@slot="end"]/ion-button[1]').click()
+        await $('//button[contains(@class, "action-sheet-button ")][span[text()="Reply"]]').waitForDisplayed()
+        await $('//button[contains(@class, "action-sheet-button ")][span[text()="Reply"]]').waitForClickable()
+        await $('//button[contains(@class, "action-sheet-button ")][span[text()="Reply"]]').click()
     }
 
 
@@ -86,6 +99,8 @@ class MessageCenter {
     }
 
     async openLatestEmail() {
+        await $('//*[@id="inbox-mail"]').waitForDisplayed()
+        await $('//*[@id="inbox-mail"]').waitForEnabled()
         const position = await this.getFirstVisibleElement()
         await $(`//*[@id="inbox-mail"]//app-email-item[position()=${position}]`).click()
     }

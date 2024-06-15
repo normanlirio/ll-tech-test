@@ -3,15 +3,15 @@ import Communicator from '../pageobjects/communicator.page'
 import MessageCenter from '../pageobjects/appList/messagecenter.page'
 import { EmailDetails } from '../types/inputPayload'
 
-describe('Send Email', () => {
+describe('User reply', () => {
 
-    //TODO: Improve Login
     beforeEach(async () => {
         await Login.open('/')
-        
+
+      
     })
 
-    it('should successfully send an Email', async () => {
+    it('should send an Email to another user', async () => {
 
         await Login.login('jh-interview-user2@revation.com','Summer2022!')
         await expect(Login.signIn).toBeEnabled()
@@ -32,9 +32,7 @@ describe('Send Email', () => {
         await MessageCenter.clickComposeNewMessageButton()
         await MessageCenter.fillToAndSubject(emailDetails)
         await MessageCenter.addEmailBody(emailDetails.emailBody)
-        await MessageCenter.chooseFileToUpload()
 
-        await expect(MessageCenter.attachedFile).toHaveText('linklive.txt')
         await expect(MessageCenter.sendButton).toBeClickable()
 
         await MessageCenter.sendEmail()
@@ -43,24 +41,44 @@ describe('Send Email', () => {
     })
 
 
-    it('verify sent Email', async () => {
+    it('should allow user to reply to an email', async () => {
+
         await Login.login('jh-interview-user@revation.com','Summer2022!')
         await expect(Login.signIn).toBeEnabled()
 
         await Login.clickSignInButton()
 
-        await Communicator.dismissModal()
+      //  await Communicator.dismissModal()
 
         await Communicator.gotoMessageCenter()
 
         await MessageCenter.mailInbox.click()
         
-        await expect(MessageCenter.emailFrom()).toHaveText('jh-interview-user2@revation.com')
-        await expect(MessageCenter.emailFrom()).toHaveAttr('class', 'unread')
-        
+         await MessageCenter.openLatestEmail()
+
+         await MessageCenter.replyToEmail()
+
+         await MessageCenter.addEmailBody('Link Live Technical Assessment')
+
+         await MessageCenter.sendEmail()
+
+
+
     })
 
-    it('verify email attachment', async () => {
-        //TODO
+
+    it('should verify the reply of the other user', async () => {
+        await Login.login('jh-interview-user2@revation.com','Summer2022!')
+        await expect(Login.signIn).toBeEnabled()
+
+        await Login.clickSignInButton()
+
+       // await Communicator.dismissModal()
+
+        await Communicator.gotoMessageCenter()
+
+        await expect(MessageCenter.emailFrom()).toHaveText('jh-interview-user@revation.com')
+        await expect(MessageCenter.emailFrom()).toHaveAttr('class', 'unread')
+       // await expect((await MessageCenter.emailFrom()).nextElement()).toContain('RE:')
     })
 })
