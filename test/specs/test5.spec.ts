@@ -16,7 +16,6 @@ describe('Send Secure Mail', () => {
     })
 
     it('should bring the user to Message Center upon selecting Send Secure Mail to a specific User', async () => {
-
         await Communicator.clickContact('link.revation.com')
         await Communicator.selectPopUpOption(3)
         await expect(MessageCenter.composeMessageButton).toBeDisplayed()
@@ -24,7 +23,7 @@ describe('Send Secure Mail', () => {
         await MessageCenter.selectEmailForSending('noreply@company.com', 'OK')
         const recipientEmail =  await MessageCenter.getPrefilledEmail()
         await expect(recipientEmail).toEqual('link@secure.revation.com')
-        await browser.pause()
+        // await browser.pause()
     })
 
 })

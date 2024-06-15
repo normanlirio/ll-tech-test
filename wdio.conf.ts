@@ -19,7 +19,12 @@ export const config: Options.Testrunner = {
     //
     maxInstances: 10,
     capabilities: [{
-        browserName: 'chrome'
+        browserName: 'chrome',
+        "goog:chromeOptions": {
+            prefs: {
+                'profile.default_content_setting_values.notifications': 1
+            }
+        }
     }],
     logLevel: 'info',
     bail: 0,

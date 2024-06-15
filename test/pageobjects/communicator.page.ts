@@ -20,6 +20,7 @@ class Communicator extends Base {
 
     async selectPopUpOption(position: number) {
         const option = await $(`//*[@class="popover-viewport"]//ion-item[position()=${position}]`)
+        await option.waitForStable()
         await option.waitForDisplayed()
         await option.click()
     }
