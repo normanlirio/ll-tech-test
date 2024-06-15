@@ -14,8 +14,9 @@ describe('Chat Session', () => {
     })
 
     it('should allow user to start a chat', async () => {
+        await Communicator.waitForOnlineStatus('link.revation.com')
         await Communicator.clickContact('link.revation.com')
-        await Communicator.clickStartMessagingOption()
+        await Communicator.selectPopUpOption(0)
         await expect(Communicator.activeSessions).toBeDisplayed()
         await expect(Communicator.internalLabel).toBeDisplayed()
         await expect(Communicator.timer).toBeDisplayed() 
