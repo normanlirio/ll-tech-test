@@ -3,7 +3,7 @@ export const ERROR_INVALID_CREDENTIALS = 'Invalid Credentials'
 export const ERROR_CHECK_URL = 'Please check your URL.'
 
 
-export const START_MESSAGING = 0
+export const START_MESSAGING = 1
 export const SEND_SECURE_MAIL = 3
 
 export const LINK_REVATION = 'link.revation.com'

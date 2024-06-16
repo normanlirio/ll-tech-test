@@ -17,7 +17,7 @@ export const config: Options.Testrunner = {
         // 'path/to/excluded/files'
     ],
     //
-    maxInstances: 10,
+    maxInstances: 1,
     capabilities: [{
         browserName: 'chrome',
         "goog:chromeOptions": {

@@ -16,7 +16,8 @@ class MessageCenter {
     get sendButton() { return $('ion-button[id="saveDraftButton"]').nextElement() }
     get subject() { return $('//*[@id="subject"]/input') }
     get uploadButton() { return $('ion-button.custom-button') }
-
+    get readerEmailSender() { return $('//app-email-reader-item//h2[contains(text(), "From")]') }
+    get readerEmailSubject() { return $('//app-email-reader-item//h1') }
 
     async selectEmailForSending(email: string, action: string) {
         await this.emailSender.click()
@@ -61,8 +62,6 @@ class MessageCenter {
             timeout: 5000,
             timeoutMsg: 'Body element inside iframe was not displayed'
         })
-
-        await browser.pause(2000)
         // Set value inside the iframe's body
         await body.addValue(message)
 
@@ -95,8 +94,8 @@ class MessageCenter {
     }
 
     async openLatestEmail() {
-        const position = await this.getFirstVisibleElementIndex()
-        const latestEmail = $(`//*[@id="inbox-mail"]//app-email-item[position()=${position}]`)
+        // const position = await this.getFirstVisibleElementIndex()
+        const latestEmail = $(`//*[@id="inbox-mail"]//app-email-item[contains(@class, 'ion-hide-md-down')][position()=1]`)
         await latestEmail.waitForStable()
         await latestEmail.click()
     }

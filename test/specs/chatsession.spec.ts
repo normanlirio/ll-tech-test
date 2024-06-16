@@ -17,7 +17,7 @@ describe('Chat Session', () => {
 
         await expect(Communicator.activeSessions).toBeDisplayed()
         await expect(Communicator.internalLabel).toBeDisplayed()
-        await expect(Communicator.timer).toBeDisplayed() 
 
+        await expect(Communicator.timer).toBeDisplayed() 
     })
 })

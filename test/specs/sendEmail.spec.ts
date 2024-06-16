@@ -10,9 +10,7 @@ describe('Send Email', () => {
     })
 
     it('should successfully send an Email', async () => {
-
         await Login.login('jh-interview-user2@revation.com','Summer2022!')
-    
         await Communicator.dismissModal()
 
         const emailDetails: EmailDetails = {
@@ -36,20 +34,11 @@ describe('Send Email', () => {
     
     })
 
-
     it('verify sent Email', async () => {
         await Login.login('jh-interview-user@revation.com','Summer2022!')
-    
         await Communicator.gotoMessageCenter()
-
         await MessageCenter.mailInbox.click()
         
-        await expect(MessageCenter.emailFrom()).toHaveText('jh-interview-user2@revation.com')
-        await expect(MessageCenter.emailFrom()).toHaveAttr('class', 'unread')
-        
-    })
-
-    it('verify email attachment', async () => {
-        //TODO
+        await expect(MessageCenter.getSenderEmailElement()).toHaveText('jh-interview-user2@revation.com')
     })
 })

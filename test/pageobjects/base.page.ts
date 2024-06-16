@@ -17,6 +17,11 @@ export default class Base {
         await this.appList.messageCenter.click()
      }
 
+     async gotoSettings() {
+        await this.appList.settings.waitForClickable()
+        await this.appList.settings.click()
+     }
+
     async open(url: string) {
         await browser.url(url)
     }
@@ -26,6 +31,7 @@ export default class Base {
     }
 
     async selectUserStatus(status: string) {
+        await this.userStatus.waitForClickable()
         await this.userStatus.click()
         const statusToSelect = await $(`//app-status-list/ion-list[@role="menu"]//ion-item[ion-label[text()="${status}"]]`)
         await statusToSelect.click()
@@ -38,7 +44,7 @@ export default class Base {
             console.log('Status: ' +(await elem.getText()).toString())
             return (await elem.getText()) === expected
         }, {
-            timeout: 220000, // Adjust the timeout as needed
+            timeout: 15000, // Adjust the timeout as needed
             timeoutMsg: errorMessage
         })
     }

@@ -10,7 +10,8 @@
     "test6": "wdio run ./wdio.conf.ts --headed --spec userreply.spec.ts",
     "test5": "wdio run ./wdio.conf.ts --headed --spec secureemail.spec.ts",
     "test4": "wdio run ./wdio.conf.ts --headed --spec sendEmail.spec.ts",
-    "test3": "wdio run ./wdio.conf.ts --headed --spec chatsession.spec.ts"
+    "test3": "wdio run ./wdio.conf.ts --headed --spec chatsession.spec.ts",
+    "all" : "wdio run ./wdio.conf.ts --headed"
   },
   "keywords": [],
   "author": "",

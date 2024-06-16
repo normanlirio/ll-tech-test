@@ -7,6 +7,7 @@ import { EMAIL_ACTION_REPLY, EMAIL_BODY } from '../utils/constant'
 describe('User reply', () => {
 
     beforeEach(async () => {
+        browser.throttleCPU(5)
         await Login.open('/')
     })
 
@@ -30,15 +31,10 @@ describe('User reply', () => {
         await expect(MessageCenter.sendButton).toBeClickable()
 
         await MessageCenter.sendEmail()
-
-
     })
 
-
     it('should allow user to reply to an email', async () => {
-
         await Login.login('jh-interview-user@revation.com', 'Summer2022!')
-     
         await Communicator.gotoMessageCenter()
         await MessageCenter.mailInbox.click()
         await MessageCenter.openLatestEmail()
@@ -48,13 +44,13 @@ describe('User reply', () => {
 
     })
 
-
     it('should verify the reply of the other user', async () => {
         await Login.login('jh-interview-user2@revation.com', 'Summer2022!')
         await Communicator.gotoMessageCenter()
-
-        await expect(MessageCenter.getSenderEmailElement()).toHaveText('jh-interview-user@revation.com')
-        await expect(MessageCenter.getSenderEmailElement()).toHaveAttr('class', 'unread')
+        await MessageCenter.openLatestEmail()
+        
+        await expect(MessageCenter.readerEmailSender).toHaveText('From: jh-interview-user@revation.com')
+        await expect(MessageCenter.readerEmailSubject).toHaveText('RE: Link Live Test')
     })
 
 })
