@@ -5,19 +5,14 @@ import { EmailDetails } from '../types/inputPayload'
 
 describe('Send Email', () => {
 
-    //TODO: Improve Login
     beforeEach(async () => {
         await Login.open('/')
-        
     })
 
     it('should successfully send an Email', async () => {
 
         await Login.login('jh-interview-user2@revation.com','Summer2022!')
-        await expect(Login.signIn).toBeEnabled()
-
-        await Login.clickSignInButton()
-
+    
         await Communicator.dismissModal()
 
         const emailDetails: EmailDetails = {
@@ -39,18 +34,12 @@ describe('Send Email', () => {
 
         await MessageCenter.sendEmail()
     
-     
     })
 
 
     it('verify sent Email', async () => {
         await Login.login('jh-interview-user@revation.com','Summer2022!')
-        await expect(Login.signIn).toBeEnabled()
-
-        await Login.clickSignInButton()
-
-        await Communicator.dismissModal()
-
+    
         await Communicator.gotoMessageCenter()
 
         await MessageCenter.mailInbox.click()

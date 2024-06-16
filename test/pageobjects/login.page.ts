@@ -7,12 +7,23 @@ class Login extends Base {
     get password() { return $('input[type="password"]') }
     get signIn() { return $('ion-button.rev-login-button') }
 
-    async login(email: string, password: string) {
+   
+    async typeEmail(email: string) {
         await this.email.setValue(email)
+    }
+
+    async typePassword(password: string) {
         await this.password.setValue(password)
     }
 
     async clickSignInButton() {
+        await this.signIn.click()
+    }
+
+    async login(email: string, password: string) {
+        await this.email.setValue(email)
+        await this.password.setValue(password)
+        await this.signIn.waitForEnabled()
         await this.signIn.click()
     }
 

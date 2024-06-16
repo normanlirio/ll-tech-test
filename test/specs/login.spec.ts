@@ -1,6 +1,7 @@
 import Login from '../pageobjects/login.page'
 import Communicator from '../pageobjects/communicator.page'
-import Constants from '../utils/constant'
+import { ERROR_INVALID_CREDENTIALS, ERROR_CHECK_URL } from '../utils/constant'
+
 
 describe('User Login', () => {
 
@@ -9,7 +10,9 @@ describe('User Login', () => {
     })
 
     it('should a user to login successfully with valid credentials', async () => {
-        await Login.login('jh-interview-user2@revation.com','Summer2022!')
+        await Login.typeEmail('jh-interview-user2@revation.com')
+        await Login.typePassword('Summer2022!')
+        
         await expect(Login.signIn).toBeEnabled()
 
         await Login.clickSignInButton()
@@ -20,13 +23,15 @@ describe('User Login', () => {
     })
 
     it('should show error cards when user enters invalid credentials', async () => {
-        await Login.login('invalid-login@revation.com','Summer2022!')
+        await Login.typeEmail('invalid-user@revation.com')
+        await Login.typePassword('invalid-password')
+        
         await expect(Login.signIn).toBeEnabled()
 
         await Login.clickSignInButton()
 
-        await expect(Login.getErrorMessage(Constants.ERROR_INVALID_CREDENTIALS)).toBeDisplayed()
-        await expect(Login.getErrorMessage(Constants.ERROR_CHECK_URL)).toBeDisplayed()
+        await expect(Login.getErrorMessage(ERROR_INVALID_CREDENTIALS)).toBeDisplayed()
+        await expect(Login.getErrorMessage(ERROR_CHECK_URL)).toBeDisplayed()
     
     })
 })

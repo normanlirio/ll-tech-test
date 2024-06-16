@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test7": "wdio run ./wdio.conf.ts --headed --spec test7.spec.ts",
-    "test6": "wdio run ./wdio.conf.ts --headed --spec test6.spec.ts",
-    "test5": "wdio run ./wdio.conf.ts --headed --spec test5.spec.ts",
+    "login": "wdio run ./wdio.conf.ts --headed --spec login.spec.ts",
+    "test7": "wdio run ./wdio.conf.ts --headed --spec minimode.spec.ts",
+    "test6": "wdio run ./wdio.conf.ts --headed --spec userreply.spec.ts",
+    "test5": "wdio run ./wdio.conf.ts --headed --spec secureemail.spec.ts",
     "test4": "wdio run ./wdio.conf.ts --headed --spec sendEmail.spec.ts",
-    "test3": "wdio run ./wdio.conf.ts --headed --spec test3.spec.ts"
+    "test3": "wdio run ./wdio.conf.ts --headed --spec chatsession.spec.ts"
   },
   "keywords": [],
   "author": "",

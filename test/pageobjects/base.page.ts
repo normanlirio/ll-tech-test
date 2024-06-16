@@ -25,19 +25,13 @@ export default class Base {
         await this.dismissButton.click()
     }
 
-
-
     async selectUserStatus(status: string) {
-        await browser.pause(5000)
-        // console.log('LOG== ' + await this.userStatus.waitForEnabled())
-
-    //   await this.userStatus.waitForDisplayed({ timeout: 20000 })
         await this.userStatus.click()
-        // await this.statusPopUp.waitForClickable()
-        const statusToSelect = await $(`//app-status-list/ion-list[@role="menu"]//ion-item[ion-label[text()="${status}"]]`) // $(`//ion-item[ion-label[text()="${status}"]]`) // 
+        const statusToSelect = await $(`//app-status-list/ion-list[@role="menu"]//ion-item[ion-label[text()="${status}"]]`)
         await statusToSelect.click()
     }
 
+    //TODO: REMOVE?
     async waitUntil(locator: ChainablePromiseElement, expected: string, errorMessage: string) {
         const elem = await locator
         await elem.waitUntil(async function () {

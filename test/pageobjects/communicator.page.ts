@@ -8,11 +8,11 @@ class Communicator extends Base {
     get internalLabel() { return this.activeSessions.$('div[qa-automation="session-participant-label"]') }
     get timer() { return this.activeSessions.$('//div[@class="details"]//span[contains(text(), "Timer")]')}
     get chatBox() { return $('.rev-message-div')}
+    get latestChatMessage() { return $('//div[contains(@class, "messages mine")][last()]//div[contains(@class, "message")]')}
     
     async getContactStatus(contactName: string) {
         return await $(`span.rev-contact-name*=${contactName}`).nextElement()
     }
-
 
     async clickContact(contactName: string) {
         await $(`span.rev-contact-name*=${contactName}`).click()
@@ -21,15 +21,14 @@ class Communicator extends Base {
 
     async selectPopUpOption(position: number) {
         const option = await $(`//*[@class="popover-viewport"]//ion-item[position()=${position}]`)
-        await option.waitForStable()
         await option.waitForDisplayed()
         await option.click()
     }
 
-    async typeMessage(message: string) {{
+    async typeMessage(message: string) {
         await this.chatBox.setValue(message)
         await $('div.rev-message-input > div.relative > ion-button').click()
-    }}
+    }
 
     async waitForOnlineStatus(contactName: string) {
         await super.waitUntil(
