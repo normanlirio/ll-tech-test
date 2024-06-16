@@ -7,6 +7,7 @@ class Communicator extends Base {
     get activeSessions() { return $('.rev-active-sessions div:last-child') }
     get internalLabel() { return this.activeSessions.$('div[qa-automation="session-participant-label"]') }
     get timer() { return this.activeSessions.$('//div[@class="details"]//span[contains(text(), "Timer")]')}
+    get chatBox() { return $('.rev-message-div')}
     
     async getContactStatus(contactName: string) {
         return await $(`span.rev-contact-name*=${contactName}`).nextElement()
@@ -24,6 +25,11 @@ class Communicator extends Base {
         await option.waitForDisplayed()
         await option.click()
     }
+
+    async typeMessage(message: string) {{
+        await this.chatBox.setValue(message)
+        await $('div.rev-message-input > div.relative > ion-button').click()
+    }}
 
     async waitForOnlineStatus(contactName: string) {
         await super.waitUntil(

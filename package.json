@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "test7": "wdio run ./wdio.conf.ts --headed --spec test7.spec.ts",
     "test6": "wdio run ./wdio.conf.ts --headed --spec test6.spec.ts",
     "test5": "wdio run ./wdio.conf.ts --headed --spec test5.spec.ts",
     "test4": "wdio run ./wdio.conf.ts --headed --spec sendEmail.spec.ts",
