@@ -37,14 +37,4 @@ export default class Base {
         await statusToSelect.click()
     }
 
-    async waitUntilOnline(locator: ChainablePromiseElement, expected: string, errorMessage: string) {
-        const elem = await locator
-        await elem.waitUntil(async function () {
-            console.log('Status: ' + (await elem.getText()).toString())
-            return (await elem.getText()) === expected
-        }, {
-            timeout: 15000,
-            timeoutMsg: errorMessage
-        })
-    }
 }

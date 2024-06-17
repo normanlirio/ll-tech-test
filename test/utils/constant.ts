@@ -1,6 +1,8 @@
 
 export const ERROR_INVALID_CREDENTIALS = 'Invalid Credentials'
 export const ERROR_CHECK_URL = 'Please check your URL.'
+export const ERROR_CONTACT_OFFLINE = ' is currently Offline, unable to proceed with the test.'
+export const STRING_USER_ONLINE = 'Online 0m'
 
 export const HEADER_MESSAGING = 'Messaging'
 export const START_MESSAGING = 'Start Messaging'
