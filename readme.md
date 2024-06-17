@@ -47,28 +47,27 @@ This project uses WebDriverIO with TypeScript for automated testing.
 
 ## Running Tests
 
-### PowerShell
+1. Open PowerShell, Bash or Terminal and navigate to the project directory.
 
-1. Open PowerShell and navigate to the project directory.
-
-2. Run tests:
+2. Run all tests:
 
    ```powershell
-   npm test
+   npm run all
    ```
 
-### Bash (Linux/macOS)
+3. Run single test:
 
-1. Open Terminal and navigate to the project directory.
-
-2. Run tests:
-
-   ```bash
-   npm test
+   ```powershell
+   npm run login
+   npm run test3
+   npm run test4
+   npm run test5
+   npm run test6
+   npm run test7
    ```
 
 ## Notes
 
 - Ensure Node.js and npm are installed on your machine.
 - Modify `wdio.conf.ts` and other configuration files as needed for your specific WebDriverIO setup.
-- Tests are located in the `test` directory.
+- Tests are located in the `test/specs` directory.
