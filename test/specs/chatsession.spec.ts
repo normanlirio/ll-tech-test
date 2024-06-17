@@ -1,12 +1,13 @@
 import Login from '../pageobjects/login.page'
 import Communicator from '../pageobjects/communicator.page'
 import { LINK_REVATION, LOGIN_URL, START_MESSAGING } from '../utils/constant'
+import credentialsConfig from '../types/credentials'
 
 describe('Chat Session', () => {
 
     beforeEach(async () => {
         await Login.open(LOGIN_URL)
-        await Login.login('jh-interview-user2@revation.com','Summer2022!')
+        await Login.login(credentialsConfig.email2,credentialsConfig.password)
         await Communicator.dismissModal()
     })
 

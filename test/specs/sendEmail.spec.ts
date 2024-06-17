@@ -12,7 +12,7 @@ describe('Send Email', () => {
     })
 
     it('should successfully send an Email', async () => {
-        await Login.login(credentialsConfig.email2,credentialsConfig.password)
+        await Login.login(credentialsConfig.email2, credentialsConfig.password)
         await Communicator.dismissModal()
 
         const emailDetails: EmailDetails = {
@@ -33,14 +33,16 @@ describe('Send Email', () => {
         await expect(MessageCenter.sendButton).toBeClickable()
 
         await MessageCenter.sendEmail()
-    
+        
+        await expect(MessageCenter.latestEmail).toBeDisplayed()
     })
 
     it('verify sent Email', async () => {
-        await Login.login('jh-interview-user@revation.com','Summer2022!')
+        await Login.login(credentialsConfig.email1, credentialsConfig.password)
         await Communicator.gotoMessageCenter()
         await MessageCenter.mailInbox.click()
-        
-        await expect(MessageCenter.getSenderEmailElement()).toHaveText('jh-interview-user2@revation.com')
+
+        await expect(MessageCenter.latestEmailSender).toHaveText('jh-interview-user2@revation.com')
+        await expect(MessageCenter.latestEmailSender).toHaveAttr('class', 'unread')
     })
 })

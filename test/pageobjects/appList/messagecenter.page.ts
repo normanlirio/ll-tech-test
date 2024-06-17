@@ -11,6 +11,8 @@ class MessageCenter {
     get emailTo() { return $('p.emailTo:first-child') }
     get fileUploadInput() { return $('input[name="filename"]') }
     get mailInbox() { return $('[qa-automation="folder-name-inbox"]') }
+    get latestEmail() { return $(`//*[@id="inbox-mail"]//app-email-item[contains(@class, 'ion-hide-md-down')][position()=1]`) }
+    get latestEmailSender() { return $(`//*[@id="inbox-mail"]//app-email-item[contains(@class, 'ion-hide-md-down')][position()=1]//h3`) }
     get recipient() { return $('//*[@id="to"]/input') }
     get replyIcon() { return $('//app-email-reader//ion-footer//ion-buttons[@slot="end"]/ion-button[1]') }
     get sendButton() { return $('ion-button[id="saveDraftButton"]').nextElement() }
@@ -88,23 +90,9 @@ class MessageCenter {
         await this.sendButton.click()
     }
 
-    async getSenderEmailElement() {
-        const position = await this.getFirstVisibleElementIndex()
-        return $(`//*[@id="inbox-mail"]//app-email-item[position()=${position}]//h3`)
-    }
-
     async openLatestEmail() {
-        // const position = await this.getFirstVisibleElementIndex()
-        const latestEmail = $(`//*[@id="inbox-mail"]//app-email-item[contains(@class, 'ion-hide-md-down')][position()=1]`)
-        await latestEmail.waitForStable()
-        await latestEmail.click()
-    }
-
-    private async getFirstVisibleElementIndex() {
-        //get number of app-email-item
-        // divide into 2 then add 1 to get the first visible element
-        const numberOfChildren = await $$('//*[@id="inbox-mail"]//app-email-item')
-        return (numberOfChildren.length / 2) + 1
+        await this.latestEmail.waitForStable()
+        await this.latestEmail.click()
     }
 
 }
