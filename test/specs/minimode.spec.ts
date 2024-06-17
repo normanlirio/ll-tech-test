@@ -6,9 +6,9 @@ import credentialsConfig from '../types/credentials'
 describe('Message via Mini mode', () => {
 
     beforeEach(async () => {
-        await browser.setWindowSize(767,800)
+        await browser.setWindowSize(767, 800)
         await Login.open(LOGIN_URL)
-        await Login.login(credentialsConfig.email2,credentialsConfig.password)
+        await Login.login(credentialsConfig.email2, credentialsConfig.password)
         await Communicator.dismissModal()
     })
 

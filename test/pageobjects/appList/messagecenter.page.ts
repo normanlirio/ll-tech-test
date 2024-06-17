@@ -71,7 +71,6 @@ class MessageCenter {
         await browser.switchToParentFrame()
     }
 
-    //improve method name
     async performEmailAction(action: string) {
         await this.replyIcon.waitForClickable()
         await this.replyIcon.click()

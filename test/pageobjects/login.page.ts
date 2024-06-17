@@ -1,13 +1,12 @@
 import Base from './base.page'
 
-//TODO: add Private group step?
 class Login extends Base {
 
     get email() { return $('input[inputmode="email"]') }
     get password() { return $('input[type="password"]') }
     get signIn() { return $('ion-button.rev-login-button') }
 
-   
+
     async typeEmail(email: string) {
         await this.email.setValue(email)
     }
@@ -34,7 +33,7 @@ class Login extends Base {
     async getErrorMessage(errorMessage: string) {
         return $(`ion-text.rev-text-alert*=${errorMessage}`)
     }
- 
+
 }
 
 

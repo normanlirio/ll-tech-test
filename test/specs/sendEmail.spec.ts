@@ -33,7 +33,7 @@ describe('Send Email', () => {
         await expect(MessageCenter.sendButton).toBeClickable()
 
         await MessageCenter.sendEmail()
-        
+
         await expect(MessageCenter.latestEmail).toBeDisplayed()
     })
 

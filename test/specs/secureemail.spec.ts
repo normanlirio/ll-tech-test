@@ -8,7 +8,7 @@ import credentialsConfig from '../types/credentials'
 describe('Send Secure Mail', () => {
     beforeEach(async () => {
         await Login.open(LOGIN_URL)
-        await Login.login(credentialsConfig.email2,credentialsConfig.password)
+        await Login.login(credentialsConfig.email2, credentialsConfig.password)
         await Communicator.dismissModal()
     })
 
@@ -16,9 +16,9 @@ describe('Send Secure Mail', () => {
         await Communicator.clickContact(LINK_REVATION)
         await Communicator.selectPopUpOption(SEND_SECURE_MAIL)
         await expect(MessageCenter.composeMessageButton).toBeDisplayed()
-     
+
         await MessageCenter.selectEmailForSending(NOREPLY_EMAIL, 'OK')
-        const recipientEmail =  await MessageCenter.getPrefilledEmail()
+        const recipientEmail = await MessageCenter.getPrefilledEmail()
         await expect(recipientEmail).toEqual(LINK_REVATION_MAIL)
 
     })

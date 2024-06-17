@@ -7,7 +7,7 @@ describe('Chat Session', () => {
 
     beforeEach(async () => {
         await Login.open(LOGIN_URL)
-        await Login.login(credentialsConfig.email2,credentialsConfig.password)
+        await Login.login(credentialsConfig.email2, credentialsConfig.password)
         await Communicator.dismissModal()
     })
 
@@ -19,6 +19,6 @@ describe('Chat Session', () => {
         await expect(Communicator.activeSessions).toBeDisplayed()
         await expect(Communicator.internalLabel).toBeDisplayed()
 
-        await expect(Communicator.timer).toBeDisplayed() 
+        await expect(Communicator.timer).toBeDisplayed()
     })
 })
