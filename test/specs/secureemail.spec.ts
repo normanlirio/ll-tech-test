@@ -2,12 +2,13 @@
 import Login from '../pageobjects/login.page'
 import Communicator from '../pageobjects/communicator.page'
 import MessageCenter from '../pageobjects/appList/messagecenter.page'
-import { LINK_REVATION, LINK_REVATION_MAIL, NOREPLY_EMAIL, SEND_SECURE_MAIL } from '../utils/constant'
+import { LINK_REVATION, LINK_REVATION_MAIL, LOGIN_URL, NOREPLY_EMAIL, SEND_SECURE_MAIL } from '../utils/constant'
+import credentialsConfig from '../types/credentials'
 
 describe('Send Secure Mail', () => {
     beforeEach(async () => {
-        await Login.open('/')
-        await Login.login('jh-interview-user2@revation.com','Summer2022!')
+        await Login.open(LOGIN_URL)
+        await Login.login(credentialsConfig.email2,credentialsConfig.password)
         await Communicator.dismissModal()
     })
 

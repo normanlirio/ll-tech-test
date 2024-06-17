@@ -16,3 +16,7 @@ export const USER_STATUS = 'Online'
 export const CHAT_MESSAGE = 'Hello World'
 
 export const EMAIL_ACTION_REPLY = 'Reply'
+
+export const LOGIN_URL = '/'
+export const INVALID_EMAIL = 'invaliduser1239@invalidcompany.com'
+export const INVALID_PASSWORD = 'invalid-password'

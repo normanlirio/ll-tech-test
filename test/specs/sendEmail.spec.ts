@@ -2,15 +2,17 @@ import Login from '../pageobjects/login.page'
 import Communicator from '../pageobjects/communicator.page'
 import MessageCenter from '../pageobjects/appList/messagecenter.page'
 import { EmailDetails } from '../types/inputPayload'
+import { LOGIN_URL } from '../utils/constant'
+import credentialsConfig from '../types/credentials'
 
 describe('Send Email', () => {
 
     beforeEach(async () => {
-        await Login.open('/')
+        await Login.open(LOGIN_URL)
     })
 
     it('should successfully send an Email', async () => {
-        await Login.login('jh-interview-user2@revation.com','Summer2022!')
+        await Login.login(credentialsConfig.email2,credentialsConfig.password)
         await Communicator.dismissModal()
 
         const emailDetails: EmailDetails = {

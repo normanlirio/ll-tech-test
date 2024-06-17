@@ -2,17 +2,18 @@ import Login from '../pageobjects/login.page'
 import Communicator from '../pageobjects/communicator.page'
 import MessageCenter from '../pageobjects/appList/messagecenter.page'
 import { EmailDetails } from '../types/inputPayload'
-import { EMAIL_ACTION_REPLY, EMAIL_BODY } from '../utils/constant'
+import { EMAIL_ACTION_REPLY, EMAIL_BODY, LOGIN_URL } from '../utils/constant'
+import credentialsConfig from '../types/credentials'
 
 describe('User reply', () => {
 
     beforeEach(async () => {
         browser.throttleCPU(5)
-        await Login.open('/')
+        await Login.open(LOGIN_URL)
     })
 
     it('should send an Email to another user', async () => {
-        await Login.login('jh-interview-user2@revation.com', 'Summer2022!')
+        await Login.login(credentialsConfig.email2, credentialsConfig.password)
         await Communicator.dismissModal()
 
         const emailDetails: EmailDetails = {
@@ -34,7 +35,7 @@ describe('User reply', () => {
     })
 
     it('should allow user to reply to an email', async () => {
-        await Login.login('jh-interview-user@revation.com', 'Summer2022!')
+        await Login.login(credentialsConfig.email1, credentialsConfig.password)
         await Communicator.gotoMessageCenter()
         await MessageCenter.mailInbox.click()
         await MessageCenter.openLatestEmail()
@@ -45,10 +46,10 @@ describe('User reply', () => {
     })
 
     it('should verify the reply of the other user', async () => {
-        await Login.login('jh-interview-user2@revation.com', 'Summer2022!')
+        await Login.login(credentialsConfig.email2, credentialsConfig.password)
         await Communicator.gotoMessageCenter()
         await MessageCenter.openLatestEmail()
-        
+
         await expect(MessageCenter.readerEmailSender).toHaveText('From: jh-interview-user@revation.com')
         await expect(MessageCenter.readerEmailSubject).toHaveText('RE: Link Live Test')
     })
