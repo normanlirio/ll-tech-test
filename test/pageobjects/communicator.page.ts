@@ -32,9 +32,10 @@ class Communicator extends Base {
         await this.conversationsTab.click()
     }
 
-    async selectPopUpOption(position: number) {
-        await browser.pause(2000) //prevents pop up to close instantly
-        await $(`//*[@class="popover-viewport"]//ion-item[position()=${position}]`).click()
+    async selectContactAction(action: string) {
+        const contactAction = await $(`//*[@class="popover-viewport"]//ion-item[contains(text(), "${action}")]`)
+        await contactAction.waitForStable()
+        await contactAction.click()
     }
 
     async typeMessage(message: string) {

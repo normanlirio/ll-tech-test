@@ -16,7 +16,7 @@ describe('Send Email', () => {
         await Communicator.dismissModal()
 
         const emailDetails: EmailDetails = {
-            recipient: 'jh-interview-user@revation.com',
+            recipient: credentialsConfig.email1,
             subject: 'Link Live Test',
             emailBody: 'Link Live Technical Assessment'
         }
@@ -42,7 +42,7 @@ describe('Send Email', () => {
         await Communicator.gotoMessageCenter()
         await MessageCenter.mailInbox.click()
 
-        await expect(MessageCenter.latestEmailSender).toHaveText('jh-interview-user2@revation.com')
+        await expect(MessageCenter.latestEmailSender).toHaveText(credentialsConfig.email2)
         await expect(MessageCenter.latestEmailSender).toHaveAttr('class', 'unread')
     })
 })

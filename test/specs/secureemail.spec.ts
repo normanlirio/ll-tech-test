@@ -14,7 +14,7 @@ describe('Send Secure Mail', () => {
 
     it('should bring the user to Message Center upon selecting Send Secure Mail to a specific User', async () => {
         await Communicator.clickContact(LINK_REVATION)
-        await Communicator.selectPopUpOption(SEND_SECURE_MAIL)
+        await Communicator.selectContactAction(SEND_SECURE_MAIL)
         await expect(MessageCenter.composeMessageButton).toBeDisplayed()
 
         await MessageCenter.selectEmailForSending(NOREPLY_EMAIL, 'OK')

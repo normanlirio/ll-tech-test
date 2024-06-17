@@ -30,7 +30,6 @@ class MessageCenter {
     async getPrefilledEmail() {
         await this.recipient.waitForDisplayed()
         const recipientEmail = await this.recipient.getValue()
-        console.log("TEST: ==" + recipientEmail + "==")
         return recipientEmail
     }
 

@@ -1,6 +1,6 @@
 import Login from '../pageobjects/login.page'
 import Communicator from '../pageobjects/communicator.page'
-import { CHAT_MESSAGE, LINK_REVATION, LOGIN_URL } from '../utils/constant'
+import { CHAT_MESSAGE, HEADER_MESSAGING, LINK_REVATION, LOGIN_URL, START_MESSAGING } from '../utils/constant'
 import credentialsConfig from '../types/credentials'
 
 describe('Message via Mini mode', () => {
@@ -16,9 +16,9 @@ describe('Message via Mini mode', () => {
         await Communicator.clickCContactsTab()
         await Communicator.waitForOnlineStatus(LINK_REVATION)
         await Communicator.clickContact(LINK_REVATION)
-        await Communicator.selectPopUpOption(1)
+        await Communicator.selectContactAction(START_MESSAGING)
 
-        await expect(Communicator.headerTitle).toHaveText('Messaging')
+        await expect(Communicator.headerTitle).toHaveText(HEADER_MESSAGING)
 
         await Communicator.typeMessage(CHAT_MESSAGE)
 

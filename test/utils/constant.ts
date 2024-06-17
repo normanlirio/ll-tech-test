@@ -2,15 +2,13 @@
 export const ERROR_INVALID_CREDENTIALS = 'Invalid Credentials'
 export const ERROR_CHECK_URL = 'Please check your URL.'
 
-
-export const START_MESSAGING = 1
-export const SEND_SECURE_MAIL = 3
+export const HEADER_MESSAGING = 'Messaging'
+export const START_MESSAGING = 'Start Messaging'
+export const SEND_SECURE_MAIL = 'Send Secure Mail'
 
 export const LINK_REVATION = 'link.revation.com'
 export const LINK_REVATION_MAIL = 'link@secure.revation.com'
 export const NOREPLY_EMAIL = 'noreply@company.com'
-
-export const EMAIL_BODY = 'Link Live Technical Assessment'
 
 export const USER_STATUS = 'Online'
 export const CHAT_MESSAGE = 'Hello World'
